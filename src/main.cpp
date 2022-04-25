@@ -1,10 +1,15 @@
 #include <Arduino.h>
+// the bus framework
 #include <tft_io.hpp>
+// the display driver
 #include <ili9341.hpp>
+// GFX for C++14
 #include <gfx_cpp14.hpp>
 // the font
 #include "DEFTONE.hpp"
+// driver/bus namespace
 using namespace arduino;
+// GFX namespace
 using namespace gfx;
 
 #define LCD_HOST    VSPI
@@ -55,10 +60,17 @@ using lcd_t = ili9341<PIN_NUM_DC,
 using color_t = color<typename lcd_t::pixel_type>;
 
 // app settings
+
+// true to draw a gradient, false for
+// a checkerboard
 const bool gradient = false;
+// true to use async batching
 const bool async = true;
+// the text
 const char* text = "hello world!";
+// the text height in pixels
 const uint16_t text_height = 75;
+// the font
 const open_font& text_font = DEFTONE_ttf;
 
 // globals
@@ -135,5 +147,4 @@ void loop() {
   if(hue>1.0) {
     hue = 0.0;
   }
-  
 }
